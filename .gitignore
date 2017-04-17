@@ -1,0 +1,10 @@
+.idea/
+*.iml
+target/
+
+*.jar
+cfg/
+start.bat
+start.sh
+task.txt
+test.db
