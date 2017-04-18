@@ -80,16 +80,25 @@
     </build>
 
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12 -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.25</version>
+        </dependency>
+
+
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-server</artifactId>
-            <version>9.3.0.M0</version>
+            <version>9.4.0.M1</version>
         </dependency>
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-webapp</artifactId>
-            <version>9.3.0.M0</version>
+            <version>9.4.0.M1</version>
         </dependency>
+
 
         <dependency>
             <groupId>org.xerial</groupId>

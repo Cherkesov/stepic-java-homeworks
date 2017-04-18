@@ -8,6 +8,7 @@ import java.sql.*;
  * Created by goforbroke on 17.04.17.
  */
 public class AccountService {
+
     public static boolean register(String login, String password)
             throws SQLException, ClassNotFoundException {
         Connection connection = DataConnection.openConnection();
@@ -16,7 +17,7 @@ public class AccountService {
                 "VALUES(?, ?)");
         statement.setString(1, login);
         statement.setString(2, password);
-        return statement.execute();
+        return statement.executeUpdate() > 0;
     }
 
     public static boolean authorize(String login, String password)
@@ -28,4 +29,5 @@ public class AccountService {
         ResultSet rs = statement1.executeQuery();
         return rs.next() && rs.getString("password").equals(password);
     }
+
 }
