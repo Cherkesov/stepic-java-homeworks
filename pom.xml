@@ -99,11 +99,17 @@
             <version>9.3.0.M0</version>
         </dependency>
 
-        <dependency>
+        <!--<dependency>
             <groupId>org.xerial</groupId>
             <artifactId>sqlite-jdbc</artifactId>
             <version>3.8.11.1</version>
+        </dependency>-->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.177</version>
         </dependency>
+
 
         <dependency>
             <groupId>com.google.guava</groupId>

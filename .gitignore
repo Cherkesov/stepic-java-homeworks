@@ -8,4 +8,6 @@ cfg/
 start.bat
 start.sh
 task.txt
+
 test.db
+h2db.*.db

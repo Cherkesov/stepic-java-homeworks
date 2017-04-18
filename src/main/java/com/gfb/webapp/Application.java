@@ -18,7 +18,7 @@ import java.sql.Connection;
  */
 public class Application {
     public static void main(String[] args) throws Exception {
-        URL url = Resources.getResource("test.sql");
+        URL url = Resources.getResource("test.h2.sql");
         String text = Resources.toString(url, Charsets.UTF_8);
         Connection connection = DataConnection.openConnection();
         connection.prepareStatement(text).execute();
