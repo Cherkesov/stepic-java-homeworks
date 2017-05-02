@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test lesson # 4 - Chat</title>
+</head>
+<body>
+
+<div id="chat__history_view"></div>
+<div>
+    <textarea id="chat__input_message" title="Текст сообщения"></textarea>
+</div>
+<div>
+    <button type="button" id="chat__send_new_message">Send</button>
+</div>
+
+</body>
+
+<script>
+    /**
+     * Add text to history view
+     * @param {String} msg
+     */
+    function putMsgToHistory(msg) {
+        var historyViewEl = document.getElementById('chat__history_view');
+        historyViewEl.innerHTML += msg + '<br/>';
+    }
+
+    function putSystemMsgToHistory(msg) {
+        putMsgToHistory('&gt;&gt;&gt; ' + msg + '&lt;&lt;&lt;');
+    }
+
+    var socket = new WebSocket("ws://127.0.0.1:8080/chat");
+    socket.onopen = function () {
+        putSystemMsgToHistory("Соединение установлено.");
+    };
+    socket.onclose = function (event) {
+        if (event.wasClean) {
+            putSystemMsgToHistory('Соединение закрыто чисто');
+        } else {
+            putSystemMsgToHistory('Обрыв соединения'); // например, "убит" процесс сервера
+        }
+        putSystemMsgToHistory('Код: ' + event.code + ' причина: ' + event.reason);
+    };
+    socket.onmessage = function (event) {
+        putMsgToHistory('Answer: ' + event.data);
+    };
+    socket.onerror = function (error) {
+        putSystemMsgToHistory("Ошибка " + error.message);
+    };
+
+
+    var inputMsgEl = document.getElementById('chat__input_message'),
+        sendBtnEl = document.getElementById('chat__send_new_message');
+
+    sendBtnEl.addEventListener('click', function () {
+        if (null == inputMsgEl.value || inputMsgEl.value.length == 0)
+            return;
+
+        var msg = inputMsgEl.value;
+        putMsgToHistory('You: ' + msg);
+        socket.send(msg);
+
+        inputMsgEl.value = '';
+    })
+</script>
+
+</html>

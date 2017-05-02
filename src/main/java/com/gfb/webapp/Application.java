@@ -1,6 +1,7 @@
 package com.gfb.webapp;
 
 import com.gfb.webapp.jdbc.DataConnection;
+import com.gfb.webapp.sevlet.ChatServlet;
 import com.gfb.webapp.sevlet.MirrorServlet;
 import com.gfb.webapp.sevlet.SignInServlet;
 import com.gfb.webapp.sevlet.SignUpServlet;
@@ -31,6 +32,9 @@ public class Application {
         // Lesson 2
         handler.addServlet(new ServletHolder(new SignUpServlet()), "/signup");
         handler.addServlet(new ServletHolder(new SignInServlet()), "/signin");
+
+        // Lesson 4
+        handler.addServlet(new ServletHolder(new ChatServlet()), "/chat");
 
         Server server = new Server(8080);
         server.setHandler(handler);
